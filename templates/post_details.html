@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<section>
+  <div class="container">
+   <div class="row row-margin-bottom">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8 no-padding lib-item col-lg-offset-3" data-category="view">
+         <div class="lib-panel">
+            <div class="row box-shadow">
+               <div class="col-md-6">
+                  <img class="lib-img-show" src="{{post.images_locations.0}}">
+               </div>
+               <div class="col-md-6">
+                  <div class="lib-row lib-header">
+                     {{post.title}}
+                     <div class="lib-header-seperator"></div>
+                  </div>
+                  <div class="lib-row lib-desc">
+                     {{post.description}}
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+      <div>
+      <div id="gallery"></div>
+
+         <!--
+         {% for location in post.images_locations %}
+             <img src="{{location}}" class="lib-img-show">
+         {% endfor %}
+         -->
+      </div>
+   </div>
+</div>
+</section>
+
+<script>
+   $('#gallery').imagesGrid({
+  images: [
+    {% for location in post.images_locations %}
+        '{{location}}'{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+});
+</script>
+
+
+
+
+
+
+{% endblock %}
